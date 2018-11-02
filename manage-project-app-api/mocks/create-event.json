@@ -1,0 +1,8 @@
+{
+    "body": "{\"ProjectName\":\"project1\",\"ProjectDescription\":\"project sample\", \"ProjectManager\":\"abc@soton.ac.uk\", \"ProjectDevelopers\":\"abc@soton.ac.uk\", \"ProjectAdmin\":\"def@soton.ac.uk\", \"ProjectStatus\":\"ongoing\",}",
+    "requestContext": {
+      "identity": {
+        "cognitoIdentityId": "USER-SUB-1234"
+      }
+    }
+  }
