@@ -1,8 +1,8 @@
 {
-    "body": "{\"ProjectName\":\"project1\",\"ProjectDescription\":\"project sample\", \"ProjectManager\":\"abc@soton.ac.uk\", \"ProjectDevelopers\":\"abc@soton.ac.uk\", \"ProjectAdmin\":\"def@soton.ac.uk\", \"ProjectStatus\":\"ongoing\",}",
+"body": "{\"ProjectAdmin\": \"admin@soton.ac.uk\",\"ProjectDescription\": \"decription of project\",\"ProjectDevelopers\": [\"developer@soton.ac.uk\",\"developer2@soton.ac.uk\"],\"ProjectManager\": \"manager@soton.ac.uk\",\"ProjectName\": \"sample project\",\"ProjectStatus\": \"Ongoing\"}",
     "requestContext": {
       "identity": {
-        "cognitoIdentityId": "USER-SUB-1234"
+        "cognitoIdentityId": "aaa73ac4-8316-4f01-b155-a8a5a50c18e9"
       }
     }
-  }
+}
