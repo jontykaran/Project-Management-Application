@@ -39,7 +39,7 @@ functions:
   # - cors: enabled CORS (Cross-Origin Resource Sharing) for browser cross
   #     domain api call
   # - authorizer: authenticate using the AWS IAM role
-  create:
+  createProject:
     handler: createProject.main
     events:
       - http:
@@ -47,3 +47,25 @@ functions:
           method: post
           cors: true
           authorizer: aws_iam
+  getProject:
+    # Defines an HTTP API endpoint that calls the main function in get.js
+    # - path: url path is /notes/{id}
+    # - method: GET request
+    handler: getProject.main
+    events:
+      - http:
+          path: project/{id}
+          method: get
+          cors: true
+          authorizer: aws_iam
+  listProject:
+    # Defines an HTTP API endpoint that calls the main function in list.js
+    # - path: url path is /notes
+    # - method: GET request
+    handler: listProject.main
+    events:
+      - http:
+          path: project
+          method: get
+          cors: true
+          authorizer: aws_iam 

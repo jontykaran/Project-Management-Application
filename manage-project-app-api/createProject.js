@@ -16,16 +16,33 @@ export async function main(event, context) {
     // - 'content': parsed from request body
     // - 'attachment': parsed from request body
     // - 'createdAt': current Unix timestamp
+    //ConditionExpression: 'attribute_not_exists(ProjectName)',
+    
+//    AttributrValueList: [{ProjectName: data.ProjectName}],
     Item: {
-      ProjectID: uuid.v1(),
-      ProjectName: data.ProjectName,
+      //ProjectID: uuid.v1(),
+      //ProjectName: data.ProjectName,
+      ProductName: data.ProductName,
       ProjectDescription: data.ProjectDescription,
       ProjectManager: data.ProjectManager,
       ProjectAdmin: data.ProjectAdmin,
       ProjectDevelopers: data.ProjectDevelopers,
       ProjectStatus: data.ProjectStatus
     },
-    TableName: 'ProjectDetails'
+    
+    //TableName: 'ProjectDetails',
+    TableName: 'Product',
+    
+    //ExpressionAttributeNames : {
+     // '#ProjectName' : 'ProjectName' //'ProjectName',
+     // '#email' : 'email',
+  //},
+  //ExpressionAttributeValues:{ ":onGoing":{"S":"On Going"}, ":completed":{"S":"Competed"}, ":notStart":{"S":"Not Started"} },
+  //ConditionExpression : "attribute_not_exists(ProductName)" 
+  //ConditionExpression : 'ProjectStatus IN {onGoing, completed,notStart}',//'attribute_not_exists(#ProjectName)',//OR attribute_not_exists(#email)',
+  //Expected: {
+  //  ProductName: { Exists: false }
+  //}
   };
 
   try {

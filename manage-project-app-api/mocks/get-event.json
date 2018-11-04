@@ -1,0 +1,11 @@
+{
+    "pathParameters": {
+      "ProjectID": "4bd1be50-df1e-11e8-99f5-5f8294dea52c",
+      "ProjectName": "sample project"
+    },
+    "requestContext": {
+      "identity": {
+        "cognitoIdentityId": "aaa73ac4-8316-4f01-b155-a8a5a50c18e9"
+      }
+    }
+  }
