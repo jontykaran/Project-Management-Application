@@ -1,5 +1,5 @@
 {
-"body": "{\"ProjectAdmin\": \"adn@soton.ac.uk\",\"ProjectDescription\": \"decription of project\",\"ProjectDevelopers\": [\"developer@soton.ac.uk\",\"developer2@soton.ac.uk\"],\"ProjectManager\": \"manager@soton.ac.uk\",\"ProductName\": \"sample projec\",\"ProjectStatus\": \"OnGoing\"}",
+"body": "{\"ProjectAdmin\": \"admin@soton.ac.uk\",\"ProjectDescription\": \"decription of project\",\"ProjectDevelopers\": [\"developer@soton.ac.uk\",\"developer2@soton.ac.uk\"],\"ProjectManager\": \"manager@soton.c.uk\",\"ProjectName\": \"sample project\",\"ProjectStatus\": \"Completed\"}",
     "requestContext": {
       "identity": {
         "cognitoIdentityId": "aaa73ac4-8316-4f01-b155-a8a5a50c18e9"

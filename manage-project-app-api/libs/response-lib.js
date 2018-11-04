@@ -5,7 +5,11 @@ export function success(body) {
   export function failure(body) {
     return buildResponse(500, body);
   }
-  
+///////////////
+  export function exist(body){
+    return buildResponse(400,body);
+  }
+ //////////////// 
   function buildResponse(statusCode, body) {
     return {
       statusCode: statusCode,

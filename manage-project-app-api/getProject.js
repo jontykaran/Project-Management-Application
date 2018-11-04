@@ -10,7 +10,8 @@ export async function main(event, context) {
     Key: {
       //userId: event.requestContext.identity.cognitoIdentityId,
       ProjectID: event.pathParameters.ProjectID,
-      ProjectName: event.pathParameters.ProjectName
+      ProjectName: event.pathParameters.ProjectName,
+      //ProjectAdmin: event.pathParameters.ProjectAdmin
     }
   };
 
