@@ -5,6 +5,7 @@ import { Nav, Navbar, NavItem } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { Auth } from "aws-amplify" ;
 //import "./NavigationBar.css";
+import { Link, withRouter } from "react-router-dom";
 
 import "./App.css";
 //import NavBar from "./containers/NavigationBar.js"
@@ -38,8 +39,11 @@ class App extends Component {
   }
 
   
-  handleLogout = event => {
+  handleLogout = async event => {
+    await Auth.signOut();
+  
     this.userHasAuthenticated(false);
+    this.props.history.push("/login");
   }
 
   render() {
@@ -49,6 +53,7 @@ class App extends Component {
     };
 
     return (
+      !this.state.isAuthenticating &&
       <div className="App container">
 
 
@@ -86,4 +91,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withRouter(App);

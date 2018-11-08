@@ -109,6 +109,49 @@ functions:
           method: delete
           cors: true
           authorizer: aws_iam
+  createUser:
+    handler: createUser.main
+    events:
+      - http:
+          path: user
+          method: post
+          cors: true
+          authorizer: aws_iam
+  getUser:
+    handler: getUser.main
+    events:
+      - http:
+          path: user/{id}
+          method: get
+          cors: true
+          authorizer: aws_iam
+  listUser:
+    # Defines an HTTP API endpoint that calls the main function in list.js
+    # - path: url path is /notes
+    # - method: GET request
+    handler: listUser.main
+    events:
+      - http:
+          path: user
+          method: get
+          cors: true
+          authorizer: aws_iam
+  updateUser:
+    handler: updateUser.main
+    events:
+      - http:
+          path: user/{id}
+          method: put
+          cors: true
+          authorizer: aws_iam 
+  deleteUser:
+    handler: deleteUser.main
+    events:
+      - http:
+          path: user/{id}
+          method: delete
+          cors: true
+          authorizer: aws_iam
 
 # Create our resources with separate CloudFormation templates
 resources:
