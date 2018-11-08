@@ -1,13 +1,5 @@
 {
-    "body": "{\"ProjectStatus\": \"ON\", \"ProjectAdmin\": \"adm\"}",
-    "pathParameters": {
-        "ProjectID":"504fefc0-e058-11e8-8094-11de007e7985",
-        "ProjectName":"sample project"
-      
-    },
-    "requestContext": {
-      "identity": {
-        "cognitoIdentityId": "USER-SUB-1234"
-      }
-    }
+  
+  "ProjectID":"xyz",
+  "ProjectName":"sample project"
   }

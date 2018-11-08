@@ -10,7 +10,7 @@ export async function main(event, context) {
     },
   
     ExpressionAttributeValues: {
-      ":value" : event.value1,
+      ":value" : event.value,
     },
      
     FilterExpression: '#Attr = :value'

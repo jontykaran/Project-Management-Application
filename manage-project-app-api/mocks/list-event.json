@@ -1,10 +1,5 @@
 {
-    "pathParameters": {
-        "ProjectID": "786475b0-df1f-11e8-8b42-1508d8d7afe7",
-        "ProjectName": "sample project",
-        "ProjectStatus": "On"
-      },
-      "ProjectStatus": "On",
+    
       "Attr": "ProjectID",
-      "value1": "xyz"
+      "value": "85745280-e126-11e8-b343-853f094a2683"
   }

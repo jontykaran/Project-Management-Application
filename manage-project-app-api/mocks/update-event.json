@@ -1,13 +1,8 @@
 {
-    "body": "{\"ProjectStatus\": \"ON\", \"ProjectAdmin\": \"adm\"}",
-    "pathParameters": {
-        "ProjectID":"86901540-e082-11e8-8fd4-63d407729de2",
-        "ProjectName":"sample project"
-      
-    },
-    "requestContext": {
-      "identity": {
-        "cognitoIdentityId": "USER-SUB-1234"
-      }
-    }
+    "updatevalue": {
+                    "ProjectStatus": "ON",
+                     "ProjectAdmin": "adm"
+                    },
+    "ProjectID":"85745280-e126-11e8-b343-853f094a2683",
+    "ProjectName":"sample project"
   }

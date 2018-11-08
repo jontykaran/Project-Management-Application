@@ -9,7 +9,7 @@ export async function main(event, context) {
             userEmail: event.userEmail,
         },});
 
-  const data = JSON.parse(event.input);
+  const data = event.updatevalue;
   const params = {
     TableName: 'UserDetails',
     Key: {

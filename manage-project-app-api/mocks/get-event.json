@@ -1,11 +1,4 @@
 {
-    "pathParameters": {
-      "ProjectID": "xyz",
-      "ProjectName": "sample project"
-    },
-    "requestContext": {
-      "identity": {
-        "cognitoIdentityId": "aaa73ac4-8316-4f01-b155-a8a5a50c18e9"
-      }
-    }
-  }
+  "ProjectID": "85745280-e126-11e8-b343-853f094a2683",
+  "ProjectName": "sample project"
+}

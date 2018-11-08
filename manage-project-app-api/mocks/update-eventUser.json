@@ -1,5 +1,5 @@
 {
-    "input": "{\"userName\": \"name\", \"userRole\": \"Developers\", \"userNumber\": \"9876543234567\" }",
+    "updatevalue": {"userName": "name", "userRole": "Developers", "userNumber": "9876543234567" },
     "userEmail": "admin@soton.ac.uk"
 
 }

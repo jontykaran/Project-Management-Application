@@ -1,4 +1,6 @@
 {
-    "body": "{\"userEmail\": \"adin@soton.ac.uk\",\"userName\": \"abc\",\"userNumber\": \"07732535831\",\"userRole\": \"Admin\"}"
-        
-    }
+     "userEmail": "test@soton.ac.uk",
+     "userName": "abc",
+     "userNumber": "07732535831",
+     "userRole": "Admin"        
+}

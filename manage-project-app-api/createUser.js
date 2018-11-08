@@ -2,13 +2,13 @@ import * as  dynamoDbLib from "./libs/dynamodb-lib";
 const { success, failure } = require ("./libs/response-lib");
 
 export async function main(event, context) {
-  const data = JSON.parse(event.body);
+  //const data = JSON.parse(event.body);
   var params = {
     Item: {
-      userEmail: data.userEmail,
-      userName: data.userName,
-      userNumber: data.userNumber,
-      userRole: data.userRole
+      userEmail: event.userEmail,
+      userName: event.userName,
+      userNumber: event.userNumber,
+      userRole: event.userRole
     },    
     TableName: 'UserDetails',
     ConditionExpression : "attribute_not_exists(userEmail)" 
