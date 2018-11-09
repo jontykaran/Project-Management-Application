@@ -1,6 +1,3 @@
 {
-     "userEmail": "test@soton.ac.uk",
-     "userName": "abc",
-     "userNumber": "07732535831",
-     "userRole": "Admin"        
+    "body":"{\"userEmail\":\"in@soton.ac.uk\",\"userName\":\"abc\",\"userNumber\":\"07732535831\",\"userRole\":\"Admin\"}"
 }

@@ -5,11 +5,13 @@ import {
   FormControl,
   ControlLabel
 } from "react-bootstrap";
+import { Auth } from "aws-amplify";
+import { API } from "aws-amplify";
+
 import LoaderButton from "./LoaderButton";
 import "./Signup.css";
-import "../config";
+import config from "../config";
 
-import { Auth, API } from "aws-amplify";
 
 export default class Signup extends Component {
   constructor(props) {
@@ -19,9 +21,9 @@ export default class Signup extends Component {
       isLoading: false,
       email: "",
       password: "",
-      name:"",
-      role:"",
-      number:"",
+      name: "",
+      role: "",
+      number: "",
       confirmPassword: "",
       confirmationCode: "",
       newUser: null
@@ -65,6 +67,12 @@ export default class Signup extends Component {
   
     this.setState({ isLoading: false });
   }
+
+  createUser(user) {
+    return API.post("manage-project-app", "/user", {
+      body: user
+    });
+  }
   
   handleConfirmationSubmit = async event => {
     event.preventDefault();
@@ -74,30 +82,21 @@ export default class Signup extends Component {
     try {
       await Auth.confirmSignUp(this.state.email, this.state.confirmationCode);
       await Auth.signIn(this.state.email, this.state.password);
-  
-      this.props.userHasAuthenticated(true);
-    //function call to store data 
       await this.createUser({
-          userEmail: this.state.email,
-          userName: this.state.name,
-          userNumber: this.state.number,
-          userRole: this.state.role
+        userEmail: this.state.email,
+        userNumber: this.state.number,
+        userRole: this.state.role,
+        userName: this.state.name
       });
-    //
-      this.props.history.push("/");
+      this.props.userHasAuthenticated(true);
+      // create page 
+      this.props.history.pop("/signup")
+      this.props.history.push("/projectdisplay");
     } catch (e) {
       alert(e.message);
       this.setState({ isLoading: false });
     }
   }
-
-  //function
-  createUser(user) {
-    return API.post("manage-project-api", "UserDetails", {
-      body: user
-    });
-  }
-  //
 
   renderConfirmationForm() {
     return (
@@ -145,33 +144,6 @@ export default class Signup extends Component {
             type="password"
           />
         </FormGroup>
-        
-        <FormGroup controlId="name" bsSize="large">
-          <ControlLabel>Name</ControlLabel>
-          <FormControl
-            value={this.state.name}
-            onChange={this.handleChange}
-            type="text"
-          />
-        </FormGroup>
-        <FormGroup controlId="role" bsSize="large">
-          <ControlLabel>Role</ControlLabel>
-          <FormControl
-            value={this.state.role}
-            onChange={this.handleChange}
-            type="text"
-          />
-        </FormGroup>
-        <FormGroup controlId="number" bsSize="large">
-          <ControlLabel>Number</ControlLabel>
-          <FormControl
-            value={this.state.number}
-            onChange={this.handleChange}
-            type="text"
-          />
-        </FormGroup>
-                
-
         <FormGroup controlId="confirmPassword" bsSize="large">
           <ControlLabel>Confirm Password</ControlLabel>
           <FormControl
@@ -180,6 +152,35 @@ export default class Signup extends Component {
             type="password"
           />
         </FormGroup>
+
+        <FormGroup controlId="name" bsSize="large">
+          <ControlLabel>Name</ControlLabel>
+          <FormControl
+            value={this.state.name}
+            onChange={this.handleChange}
+            type="text"
+          />
+        </FormGroup>
+        
+        <FormGroup controlId="role" bsSize="large">
+          <ControlLabel>Role</ControlLabel>
+          <FormControl
+            value={this.state.role}
+            onChange={this.handleChange}
+            type="text"
+          />
+        </FormGroup>
+        
+        <FormGroup controlId="number" bsSize="large">
+          <ControlLabel>Phone Number</ControlLabel>
+          <FormControl
+            value={this.state.number}
+            onChange={this.handleChange}
+            type="text"
+          />
+        </FormGroup>
+        
+
         <LoaderButton
           block
           bsSize="large"

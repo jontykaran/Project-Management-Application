@@ -1,12 +1,11 @@
 export default {
     s3: {
       REGION: "eu-west-2",
-      BUCKET: "manage-program-app"
+      BUCKET: "YOUR_S3_UPLOADS_BUCKET_NAME"
     },
     apiGateway: {
       REGION: "eu-west-2",
-      URL: " https://q55msxwzhc.execute-api.eu-west-2.amazonaws.com/prod/"
-      
+      URL: "https://q55msxwzhc.execute-api.eu-west-2.amazonaws.com/prod"
     },
     cognito: {
       REGION: "eu-west-2",
