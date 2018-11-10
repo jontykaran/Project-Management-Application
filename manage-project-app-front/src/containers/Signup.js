@@ -90,8 +90,7 @@ export default class Signup extends Component {
       });
       this.props.userHasAuthenticated(true);
       // create page 
-      this.props.history.pop("/signup")
-      this.props.history.push("/projectdisplay");
+      this.props.history.push("/home");
     } catch (e) {
       alert(e.message);
       this.setState({ isLoading: false });

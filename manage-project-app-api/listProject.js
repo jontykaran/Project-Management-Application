@@ -5,16 +5,7 @@ export async function main(event, context) {
   const params = {
     TableName: 'ProjectDetails',
   
-    ExpressionAttributeNames:{
-        "#Attr": event.Attr
-    },
-  
-    ExpressionAttributeValues: {
-      ":value" : event.value,
-    },
-     
-    FilterExpression: '#Attr = :value'
-  };
+    };
 
   try {
     const result = await dynamoDbLib.call("scan", params);

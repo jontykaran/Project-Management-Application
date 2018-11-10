@@ -5,8 +5,8 @@ export async function main(event, context) {
   const params = {
     TableName: 'ProjectDetails',
     Key: {
-      ProjectID: event.ProjectID,
-      ProjectName: event.ProjectName,
+      ProjectID: event.pathParameters.id,
+      //ProjectName: event.pathParameters.name,
     }
   };
 
