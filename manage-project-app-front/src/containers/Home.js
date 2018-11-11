@@ -3,13 +3,15 @@ import "./Home.css";
 import { API } from "aws-amplify";
 import { PageHeader, ListGroup, ListGroupItem } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
+import {withRouter } from "react-router-dom";
 
 
-export default class Home extends Component {
+ class Home extends Component {
   constructor(props) {
     super(props);
-
+    
     this.state = {
+      isbool: true,
       isLoading: true,
       project: []
     };
@@ -35,12 +37,13 @@ export default class Home extends Component {
     try {
       const notes = await this.projects();
       this.setState({ project: notes });
-      //console.log(notes);
+      console.log(notes);
 
     } catch (e) {
       alert(e);
     }
     this.setState({ isLoading: false });
+    this.setState({isbool: false});
   }
   
   projects() {
@@ -84,7 +87,8 @@ export default class Home extends Component {
   }
 
   render() {
-    this.componentDidMount();
+    if(this.state.isbool)
+    {this.componentDidMount();}
 
     //console.log(this.state.project);
     return (
@@ -95,3 +99,4 @@ export default class Home extends Component {
   }
 }
 
+export default withRouter(Home);
