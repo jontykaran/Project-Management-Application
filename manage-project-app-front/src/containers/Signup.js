@@ -16,7 +16,7 @@ import config from "../config";
 export default class Signup extends Component {
   constructor(props) {
     super(props);
-
+      this.x = ""
     this.state = {
       isLoading: false,
       email: "",
@@ -26,7 +26,8 @@ export default class Signup extends Component {
       number: "",
       confirmPassword: "",
       confirmationCode: "",
-      newUser: null
+      newUser: null,
+      userID: ""
     };
   }
 
@@ -82,11 +83,17 @@ export default class Signup extends Component {
     try {
       await Auth.confirmSignUp(this.state.email, this.state.confirmationCode);
       await Auth.signIn(this.state.email, this.state.password);
+      await Auth.currentAuthenticatedUser().then(function(u) {
+        this.x=  u.username;
+      });
+      
       await this.createUser({
         userEmail: this.state.email,
         userNumber: this.state.number,
         userRole: this.state.role,
-        userName: this.state.name
+        userName: this.state.name,
+        userID: this.x
+        //this.state.userID
       });
       this.props.userHasAuthenticated(true);
       // create page 
@@ -95,6 +102,12 @@ export default class Signup extends Component {
       alert(e.message);
       this.setState({ isLoading: false });
     }
+  }
+
+  handleChangeCheck = event => {
+    this.setState({
+      role: event.target.value
+    });
   }
 
   renderConfirmationForm() {
@@ -163,11 +176,37 @@ export default class Signup extends Component {
         
         <FormGroup controlId="role" bsSize="large">
           <ControlLabel>Role</ControlLabel>
-          <FormControl
-            value={this.state.role}
-            onChange={this.handleChange}
-            type="text"
-          />
+          <div>
+          <label>
+            <input
+              type="radio"
+              value="Admin"
+              checked={this.state.role === "Admin"}
+              onChange={this.handleChangeCheck}
+            />
+            Admin  
+          </label>
+          
+          <label>
+            <input
+              type="radio"
+              value="Project Manager"
+              checked={this.state.role === "Project Manager"}
+              onChange={this.handleChangeCheck}
+            />
+            Project Manager  
+          </label>
+          <label>
+            <input
+              type="radio"
+              value="Developer"
+              checked={this.state.role === "Developer"}
+              onChange={this.handleChangeCheck}
+            />
+            Developer  
+          </label>
+
+          </div>
         </FormGroup>
         
         <FormGroup controlId="number" bsSize="large">

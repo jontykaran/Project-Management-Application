@@ -4,16 +4,7 @@ import { success, failure } from "./libs/response-lib";
 export async function main(event, context) {
   const params = {
     TableName: 'UserDetails',
-  
-    ExpressionAttributeNames:{
-        "#Attr": event.Attr
-    },
-  
-    ExpressionAttributeValues: {
-      ":value" : event.value,
-    },
      
-    FilterExpression: '#Attr = :value'
   };
 
   try {

@@ -5,13 +5,15 @@ export async function main(event, context) {
   const params = {
     TableName: 'UserDetails',
     Key: {
-      userEmail: event.userEmail
+      userName: event.requestContext.identity.cognitoIdentityId,
+      //ProjectName: event.pathParameters.name,
     }
   };
 
   try {
     const result = await dynamoDbLib.call("get", params);
     if (result.Item) {
+      // Return the retrieved item
       return success(result.Item);
     } else {
       return failure({ status: false, error: "Item not found." });

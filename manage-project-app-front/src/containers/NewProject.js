@@ -1,7 +1,7 @@
 import React, { Component , Fragment} from "react";
 import { FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import LoaderButton from "./LoaderButton";
-import { API } from "aws-amplify";
+import { API, Auth} from "aws-amplify";
 
 import config from "../config";
 import "./NewProject.css";
@@ -11,20 +11,47 @@ export default class NewProject extends Component {
   constructor(props) {
     super(props);
 
+    this.us = "a";
     this.buttonPress = false;
     this.developers = new Array();
     this.state = {
         number: 1,
       isLoading: null,
+      role: "",
       name: "",
       admin: "",
       developer: "",
       description: "",
       manager: "",
-      status: "On"
+      status: "Commencing"
     };
   }
 
+
+  //
+
+  async componentDidMount() {
+    try {
+      const user = await this.user();
+      const  r = user.role;
+       console.log(user); 
+       var y;
+       var x = Auth.currentAuthenticatedUser().then(function(u) {
+         return u;
+      });
+       console.log(this.us);
+      this.setState({role : r
+        });
+    
+    } catch (e) {
+      alert(e);
+    }
+  }
+
+  user() {
+    return API.get("manage-project-app", "/user")
+  }
+  //
   validateForm() {
     return this.state.name.length > 0;
   }
@@ -35,12 +62,21 @@ export default class NewProject extends Component {
     });
   }
 
+
+  handleChangeCheck = event => {
+    this.setState({
+      status: event.target.value
+    });
+  }
+
 ///////////////
   handleSubmit = async event => {
     event.preventDefault();
     this.setState({ isLoading: true });
   
     try {
+
+      
       await this.createProject({
         ProjectAdmin: this.state.ProjectAdmin,
         ProjectDescription: this.state.description,
@@ -131,11 +167,46 @@ export default class NewProject extends Component {
         {this.renderDevelopers()}
 
         <button
-          className="add developer"
+          className="add_developer"
           onClick={this.handleAdd}>add another developer</button>
 
 
+           
+          <FormGroup>
+          <ControlLabel>Project Status</ControlLabel>
+          <div>
+          <label>
+            <input
+              type="radio"
+              value="Completed"
+              checked={this.state.status === "Completed"}
+              onChange={this.handleChangeCheck}
+            />
+            Completed  
+          </label>
           
+          <label>
+            <input
+              type="radio"
+              value="Active"
+              checked={this.state.status === "Active"}
+              onChange={this.handleChangeCheck}
+            />
+            Active  
+          </label>
+          <label>
+            <input
+              type="radio"
+              value="Commencing"
+              checked={this.state.status === "Commencing"}
+              onChange={this.handleChangeCheck}
+            />
+            Commencing  
+          </label>
+
+          </div>
+        
+    </FormGroup>
           <LoaderButton
             block
             bsStyle="primary"

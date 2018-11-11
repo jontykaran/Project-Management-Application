@@ -24,7 +24,8 @@ export default class Notes extends Component {
       ProjectDescription: "",
       ProjectAdmin: "",
       ProjectManager: "",
-      ProjectDevelopers: [],      
+      ProjectDevelopers: [],  
+      ProjectStatus: ""    
     };
   }
 
@@ -88,7 +89,8 @@ export default class Notes extends Component {
         ProjectDescription: this.state.ProjectDescription,
         ProjectAdmin: this.state.ProjectAdmin,
         ProjectManager: this.state.ProjectManager,
-        ProjectDevelopers: this.dev(this.state.ProjectDevelopers)
+        ProjectDevelopers: this.dev(this.state.ProjectDevelopers),
+        ProjectStatus: this.state.ProjectStatus
       });
       this.props.history.push("/");
     } catch (e) {
@@ -102,12 +104,16 @@ export default class Notes extends Component {
     return   a.split("\n");
   }
   
-  ////////////////////////// delete 
+  ////////////////////////// delete
+  deleteProject() {
+    return API.del("manage-project-app", `/project/${this.props.match.params.id}`);
+  }
+  
   handleDelete = async event => {
     event.preventDefault();
   
     const confirmed = window.confirm(
-      "Are you sure you want to delete this Project?"
+      "Are you sure you want to delete this note?"
     );
   
     if (!confirmed) {
@@ -115,8 +121,21 @@ export default class Notes extends Component {
     }
   
     this.setState({ isDeleting: true });
+  
+    try {
+      await this.deleteProject();
+      this.props.history.push("/");
+    } catch (e) {
+      alert(e);
+      this.setState({ isDeleting: false });
+    }
+  } 
+  //////////////////////////
+  handleChangeCheck = event => {
+    this.setState({
+      ProjectStatus: event.target.value
+    });
   }
-
   handleAdd = async event => {
     event.preventDefault();
     //ProjectDevelopers(this.state.developer);
@@ -190,6 +209,42 @@ export default class Notes extends Component {
           </FormGroup>
 
           {this.renderDevelopers()}
+
+          <FormGroup>
+          <ControlLabel>Project Status</ControlLabel>
+          <div>
+          <label>
+            <input
+              type="radio"
+              value="Completed"
+              checked={this.state.ProjectStatus === "Completed"}
+              onChange={this.handleChangeCheck}
+            />
+            Completed  
+          </label>
+          
+          <label>
+            <input
+              type="radio"
+              value="Active"
+              checked={this.state.ProjectStatus === "Active"}
+              onChange={this.handleChangeCheck}
+            />
+            Active  
+          </label>
+          <label>
+            <input
+              type="radio"
+              value="Commencing"
+              checked={this.state.ProjectStatus === "Commencing"}
+              onChange={this.handleChangeCheck}
+            />
+            Commencing  
+          </label>
+
+          </div>
+        
+    </FormGroup>
 
             <LoaderButton
               block

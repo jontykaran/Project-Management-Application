@@ -6,3 +6,13 @@
     height: 80px;
     font-size: 24px;
   }
+
+  .NewProject form div label {
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-bottom: 10px;
+  }
+
+  .add_developer {
+    margin-bottom: 25px;
+  }
